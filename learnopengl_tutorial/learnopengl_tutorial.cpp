@@ -22,8 +22,10 @@ const char* vertexShaderPath = "./Shaders/shader.vs";
 const char* fragmentShaderPath = "./Shaders/shader.fs";
 
 // settings
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
+
+const unsigned int screen_size = 2;
+const unsigned int SCR_WIDTH = 800 * screen_size;
+const unsigned int SCR_HEIGHT = 600 * screen_size;
 
 
 // mouse
@@ -43,6 +45,12 @@ float yaw = 270.0f;
 float pitch = 0.0f;
 
 float last_fov = 0.0f;
+
+int frames = 0;
+double t, fps;
+
+double t0 = glfwGetTime();
+char fps_string[10];
 
 int main() {
     // glfw: initialize and configure
@@ -224,14 +232,6 @@ int main() {
         // update frame time
         float currentFrame = glfwGetTime();
 
-        if (fov != last_fov) {
-            last_fov = fov;
-            std::cout << "New fov: " << last_fov << std::endl;
-            std::cout << "Camera front: " << cameraFront.x << ", " << cameraFront.y << ", " << cameraFront.z << std::endl;
-        }
-
-
-
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
@@ -312,6 +312,17 @@ int main() {
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
 
+        t = glfwGetTime();
+
+        if ((t - t0) > 1.0 || frames == 0) {
+            fps = (double)frames / (t - t0);
+            sprintf_s(fps_string, "FPS: %.1f", fps);
+            glfwSetWindowTitle(window, fps_string);
+            t0 = t;
+            frames = 0;
+        }
+        frames++;
+
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
@@ -324,6 +335,8 @@ int main() {
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
     glDeleteBuffers(1, &EBO);
+
+
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------
@@ -379,8 +392,6 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
     direction.y = sin(glm::radians(pitch));
     direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
     cameraFront = glm::normalize(direction);
-
-    std::cout << "Camera yaw: " << yaw << std::endl;
 }
 
 
