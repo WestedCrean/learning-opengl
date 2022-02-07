@@ -207,6 +207,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="E:\OpenGL\glad.c" />
     <ClCompile Include="learnopengl_tutorial.cpp" />
     <ClCompile Include="Shader.cpp" />
@@ -215,12 +216,21 @@
     <ResourceCompile Include="learnopengl_tutorial.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\shader.fs" />
-    <None Include="Shaders\shader.vs" />
+    <None Include="Shaders\color_cube.fs" />
+    <None Include="Shaders\color_cube.vs" />
+    <None Include="Shaders\light_cube.fs" />
+    <None Include="Shaders\light_cube.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Textures\container2.png" />
+    <Image Include="Textures\container2_specular.png" />
+    <Image Include="Textures\lighting_maps_specular_color.png" />
+    <Image Include="Textures\matrix.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
