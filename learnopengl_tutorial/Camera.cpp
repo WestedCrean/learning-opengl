@@ -7,21 +7,9 @@
 #include "Camera.h"
 
 Camera::Camera(glm::vec3 position, float pitch = 0.0f, float yaw = 270.0f) {
-    // glm::mat4 view;
-    // glm::vec3 cameraPos;
-    // glm::vec3 cameraFront;
-    // glm::vec3 cameraUp;
-    // 
-    // float lastX;
-    // float lastY;
-    // bool firstMouse;
-    // 
-    // float yaw;
-    // float pitch;
-    // float fov;
-    this->cameraPos = position;
-    this->cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
-    this->cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+    this->Position = position;
+    this->Front = glm::vec3(0.0f, 0.0f, -1.0f);
+    this->Up = glm::vec3(0.0f, 1.0f, 0.0f);
 
     this->yaw = yaw;
     this->pitch = pitch;
@@ -31,26 +19,26 @@ Camera::Camera(glm::vec3 position, float pitch = 0.0f, float yaw = 270.0f) {
 };
 
 glm::mat4 Camera::GetViewMatrix() const {
-    return glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+    return glm::lookAt(Position, Position + Front, Up);
 }
 
 void Camera::ProcessKeyboard(Direction direction, float deltaTime) {
     float cameraSpeed = 2.5f * deltaTime;
 
     if (direction == Direction::FORWARD) {
-        cameraPos = cameraPos + cameraSpeed * cameraFront;
+        Position = Position + cameraSpeed * Front;
     }
     if (direction == Direction::BACKWARD) {
-        cameraPos = cameraPos - cameraSpeed * cameraFront;
+        Position = Position - cameraSpeed * Front;
     }
     if (direction == Direction::LEFT) {
-        cameraPos = cameraPos - glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+        Position = Position - glm::normalize(glm::cross(Front, Up)) * cameraSpeed;
     }
     if (direction == Direction::RIGHT) {
-        cameraPos = cameraPos + glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+        Position = Position + glm::normalize(glm::cross(Front, Up)) * cameraSpeed;
     }
 
-    // std::cout << "New camera pos: " << cameraPos.x << ", " << cameraPos.y << ", " << cameraPos.z << std::endl;
+    //std::cout << "Camera position: " << Position.x << " , " << Position.y << " , " << Position.z << std::endl;
 }
 
 void Camera::ProcessMouseMovement(float offsetX, float offsetY) {
@@ -72,7 +60,7 @@ void Camera::ProcessMouseMovement(float offsetX, float offsetY) {
     direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
     direction.y = sin(glm::radians(pitch));
     direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
-    cameraFront = glm::normalize(direction);
+    Front = glm::normalize(direction);
 
     // std::cout << "New pitch, yaw : " << pitch << ", " << yaw << std::endl;
 }
@@ -83,5 +71,5 @@ void Camera::ProcessMouseScroll(float offsetY) {
         Zoom = 20.0f;
     if (Zoom > 45.0f)
         Zoom = 45.0f;
-    // std::cout << "New zoom: " << Zoom << std::endl;
+    // std::cout << "New zoom: " << zoom << std::endl;
 }

@@ -16,9 +16,9 @@ class Camera {
     // the program ID
     float Zoom;
     glm::mat4 view;
-    glm::vec3 cameraPos;
-    glm::vec3 cameraFront;
-    glm::vec3 cameraUp;
+    glm::vec3 Position;
+    glm::vec3 Front;
+    glm::vec3 Up;
 
     float lastFrame;
 
