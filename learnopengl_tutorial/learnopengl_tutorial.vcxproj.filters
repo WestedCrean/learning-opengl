@@ -27,6 +27,12 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="learnopengl_tutorial.rc">
@@ -43,12 +49,18 @@
     <ClInclude Include="Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\color_cube.vs" />
-    <None Include="Shaders\color_cube.fs" />
-    <None Include="Shaders\light_cube.vs" />
-    <None Include="Shaders\light_cube.fs" />
+    <None Include="Shaders\color_cube.vert" />
+    <None Include="Shaders\color_cube.frag" />
+    <None Include="Shaders\light_cube.vert" />
+    <None Include="Shaders\light_cube.frag" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\container2.png">

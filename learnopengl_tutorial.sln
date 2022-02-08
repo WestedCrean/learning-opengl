@@ -8,25 +8,16 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug in Terminal|x64 = Debug in Terminal|x64
-		Debug in Terminal|x86 = Debug in Terminal|x86
 		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
 		Release|x64 = Release|x64
-		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{6AE9E05B-88C1-4026-8DFC-B307EE4EA8CC}.Debug in Terminal|x64.ActiveCfg = Debug in Terminal|x64
 		{6AE9E05B-88C1-4026-8DFC-B307EE4EA8CC}.Debug in Terminal|x64.Build.0 = Debug in Terminal|x64
-		{6AE9E05B-88C1-4026-8DFC-B307EE4EA8CC}.Debug in Terminal|x86.ActiveCfg = Debug in Terminal|Win32
-		{6AE9E05B-88C1-4026-8DFC-B307EE4EA8CC}.Debug in Terminal|x86.Build.0 = Debug in Terminal|Win32
 		{6AE9E05B-88C1-4026-8DFC-B307EE4EA8CC}.Debug|x64.ActiveCfg = Debug|x64
 		{6AE9E05B-88C1-4026-8DFC-B307EE4EA8CC}.Debug|x64.Build.0 = Debug|x64
-		{6AE9E05B-88C1-4026-8DFC-B307EE4EA8CC}.Debug|x86.ActiveCfg = Debug|Win32
-		{6AE9E05B-88C1-4026-8DFC-B307EE4EA8CC}.Debug|x86.Build.0 = Debug|Win32
 		{6AE9E05B-88C1-4026-8DFC-B307EE4EA8CC}.Release|x64.ActiveCfg = Release|x64
 		{6AE9E05B-88C1-4026-8DFC-B307EE4EA8CC}.Release|x64.Build.0 = Release|x64
-		{6AE9E05B-88C1-4026-8DFC-B307EE4EA8CC}.Release|x86.ActiveCfg = Release|Win32
-		{6AE9E05B-88C1-4026-8DFC-B307EE4EA8CC}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
