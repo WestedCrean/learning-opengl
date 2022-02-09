@@ -42,6 +42,7 @@ glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
 
 float cutOff = 12.5f;
 
+
 int main() {
     // glfw: initialize and configure
     // ------------------------------
@@ -77,6 +78,8 @@ int main() {
         return -1;
     }
 
+    stbi_set_flip_vertically_on_load(true);
+
     // configure global opengl state
     // -----------------------------
     glEnable(GL_DEPTH_TEST);
@@ -85,6 +88,9 @@ int main() {
     // ------------------------------------
     Shader lightingShader("./Shaders/color_cube.vert", "./Shaders/color_cube.frag");
     Shader lightCubeShader("./Shaders/light_cube.vert", "./Shaders/light_cube.frag");
+
+    Model backpackModel("./Models/backpack/backpack.obj");
+    Model donutModel("./Models/donut/donut.obj");
 
     float vertices[] = {
         // positions          // normals           // texture coords
@@ -278,43 +284,47 @@ int main() {
 
         // world transformation
         glm::mat4 model = glm::mat4(1.0f);
+        model = glm::scale(model, glm::vec3(10.0f, 10.0f, 10.0f));
         lightingShader.setMat4("model", model);
 
-        // bind diffuse map
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, diffuseMap);
-        // bind specular map
-        glActiveTexture(GL_TEXTURE1);
-        glBindTexture(GL_TEXTURE_2D, specularMap);
+        //// bind diffuse map
+        //glActiveTexture(GL_TEXTURE0);
+        //glBindTexture(GL_TEXTURE_2D, diffuseMap);
+        //// bind specular map
+        //glActiveTexture(GL_TEXTURE1);
+        //glBindTexture(GL_TEXTURE_2D, specularMap);
 
-        // render containers
-        glBindVertexArray(cubeVAO);
-        for (unsigned int i = 0; i < 10; i++) {
-            // calculate the model matrix for each object and pass it to shader before drawing
-            glm::mat4 model = glm::mat4(1.0f);
-            model = glm::translate(model, cubePositions[i]);
-            float angle = 20.0f * i;
-            model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
-            lightingShader.setMat4("model", model);
-
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-        }
+        //// render containers
+        //glBindVertexArray(cubeVAO);
+        //for (unsigned int i = 0; i < 10; i++) {
+        //    // calculate the model matrix for each object and pass it to shader before drawing
+        //    glm::mat4 model = glm::mat4(1.0f);
+        //    model = glm::translate(model, cubePositions[i]);
+        //    float angle = 20.0f * i;
+        //    model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+        //    lightingShader.setMat4("model", model);
+        //
+        //    glDrawArrays(GL_TRIANGLES, 0, 36);
+        //}
 
         // also draw the lamp object(s)
-        lightCubeShader.use();
-        lightCubeShader.setMat4("projection", projection);
-        lightCubeShader.setMat4("view", view);
+        //lightCubeShader.use();
+        //lightCubeShader.setMat4("projection", projection);
+        //lightCubeShader.setMat4("view", view);
 
         // we now draw as many light bulbs as we have point lights.
-        glBindVertexArray(lightCubeVAO);
-        for (unsigned int i = 0; i < 4; i++) {
-            model = glm::mat4(1.0f);
-            model = glm::translate(model, pointLightPositions[i]);
-            model = glm::scale(model, glm::vec3(0.2f)); // Make it a smaller cube
-            lightCubeShader.setMat4("model", model);
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-        }
+        //glBindVertexArray(lightCubeVAO);
+        //for (unsigned int i = 0; i < 4; i++) {
+        //    model = glm::mat4(1.0f);
+        //    model = glm::translate(model, pointLightPositions[i]);
+        //    model = glm::scale(model, glm::vec3(0.2f)); // Make it a smaller cube
+        //    lightCubeShader.setMat4("model", model);
+        //    glDrawArrays(GL_TRIANGLES, 0, 36);
+        //}
 
+        donutModel.Draw(lightingShader);
+
+        //backpack->Draw();
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
         glfwSwapBuffers(window);

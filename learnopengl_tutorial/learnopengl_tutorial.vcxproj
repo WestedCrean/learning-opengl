@@ -210,8 +210,6 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="E:\OpenGL\glad.c" />
     <ClCompile Include="learnopengl_tutorial.cpp" />
-    <ClCompile Include="Mesh.cpp" />
-    <ClCompile Include="Model.cpp" />
     <ClCompile Include="Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
